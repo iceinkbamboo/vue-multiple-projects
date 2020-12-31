@@ -8,7 +8,8 @@ const routes = [
   {
     path: "/",
     name: "A",
-    component: A
+    component: A,
+    meta: { title: "projectA" }
   }
 ];
 

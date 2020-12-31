@@ -14,7 +14,7 @@ npm install
 ```
 npm run serve
 项目地址：以project文件下文件名做区分，如porjectA
-http://localhost:port/projectA.html#/
+http://localhost:port/projectA#/
 ```
 
 ### Compiles and minifies for production

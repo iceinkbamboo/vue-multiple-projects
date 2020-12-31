@@ -3,6 +3,7 @@ var glob = require("glob");
 
 function getEntry() {
   var entries = {};
+  // 生产环境单独打包
   if (process.env.NODE_ENV == "production" && projectname) {
     entries = {
       index: {
@@ -11,12 +12,13 @@ function getEntry() {
         // 模板来源
         template: "public/index.html",
         // 在 dist/index.html 的输出
-        filename: "index.html",
+        filename: `index.html`,
         title: projectname,
         chunks: ["chunk-vendors", "chunk-common", "index"]
       }
     };
   } else {
+    // 开发和生产环境一键打包
     var items = glob.sync("./src/project/*/*.js");
     for (var i in items) {
       var filepath = items[i];
@@ -27,7 +29,7 @@ function getEntry() {
         // 模板来源
         template: `public/index.html`,
         // 在 dist/index.html 的输出
-        filename: `${fileName}.html`,
+        filename: `${fileName}/index.html`,
         // 提取出来的通用 chunk 和 vendor chunk。
         chunks: ["chunk-vendors", "chunk-common", fileName]
       };
@@ -37,9 +39,23 @@ function getEntry() {
 }
 
 var pages = getEntry();
+
 module.exports = {
-  publicPath: "./",
+  publicPath: process.env.NODE_ENV == "production" ? "/dist" : "/", // dist为服务器上地址，根据项目所在服务器地址设置
   productionSourceMap: false, // 生产禁止显示源代码
   outputDir: projectname ? "dist/" + projectname : "dist",
-  pages: pages
+  pages: pages,
+  // 本地代理
+  devServer: {
+    proxy: {
+      "/api": {
+        target: "localhost",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": ""
+        }
+      }
+    }
+  }
 };

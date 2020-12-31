@@ -7,7 +7,8 @@ const routes = [
   {
     path: "/",
     name: "B",
-    component: () => import(/* webpackChunkName: "about" */ "../views/b.vue")
+    component: () => import(/* webpackChunkName: "about" */ "../views/b.vue"),
+    meta: { title: "projectB" }
   }
 ];
 
