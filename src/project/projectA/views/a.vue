@@ -3,6 +3,7 @@
     <h1>我是项目ProjectA</h1>
     <img src="@/assets/logo.png" alt />
     <HelloWorld></HelloWorld>
+    <button @click="jump">b页面</button>
   </div>
 </template>
 
@@ -24,6 +25,11 @@ export default {
     a({}).then(res => {
       console.log(res);
     });
+  },
+  methods: {
+    jump() {
+      this.$router.push({ name: "B" });
+    }
   }
 };
 </script>

@@ -3,7 +3,7 @@ import request from "@/utils/request";
 
 export function activityList(data) {
   return request({
-    url: "",
+    url: "/common",
     method: "post",
     data
   });

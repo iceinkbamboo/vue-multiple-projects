@@ -3,7 +3,7 @@ import request from "@/utils/request";
 
 export function a(data) {
   return request({
-    url: "",
+    url: "/a",
     method: "post",
     data
   });
