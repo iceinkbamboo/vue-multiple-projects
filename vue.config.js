@@ -28,7 +28,7 @@ function getEntry() {
         entry: `src/project/${fileName}/main.js`,
         // 模板来源
         template: `public/index.html`,
-        // 在 dist/index.html 的输出
+        // 在 dist/fileName/index.html 的输出
         filename: `${fileName}/index.html`,
         // 提取出来的通用 chunk 和 vendor chunk。
         chunks: ["chunk-vendors", "chunk-common", fileName]
@@ -47,6 +47,7 @@ module.exports = {
   pages: pages,
   // 本地代理
   devServer: {
+    open: true, // 自动打开浏览器
     proxy: {
       "/api": {
         target: "localhost",
