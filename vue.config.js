@@ -44,6 +44,7 @@ module.exports = {
   publicPath: process.env.NODE_ENV == "production" ? "/dist" : "/", // dist为服务器上地址，根据项目所在服务器地址设置
   productionSourceMap: false, // 生产禁止显示源代码
   outputDir: projectname ? "dist/" + projectname : "dist",
+  assetsDir: "static",
   pages: pages,
   // 本地代理
   devServer: {
